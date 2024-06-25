@@ -8,6 +8,7 @@ import { useMyStore } from '@/stores/MyStore.js';
 import {routes} from '@/router'
 
 test('setFlags is called when transferring from a to b', async () => {
+  let wrapper
   const pinia = createPinia();
   setActivePinia(pinia);
   const store = useMyStore();
@@ -22,7 +23,7 @@ test('setFlags is called when transferring from a to b', async () => {
   router.push('/test/a');
   await router.isReady();
 
-  const wrapper = mount(One, {
+  wrapper = mount(One, {
     global: {
       plugins: [router],
     },
@@ -31,7 +32,6 @@ test('setFlags is called when transferring from a to b', async () => {
   // simulate a router update from a to b
   router.push('/test/b');
   await router.isReady();
-  await wrapper.vm.$nextTick()
 
   expect(store.setFlags).toHaveBeenCalledTimes(1);
 });

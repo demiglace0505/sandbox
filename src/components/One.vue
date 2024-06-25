@@ -1,7 +1,10 @@
 <script setup>
 import { onBeforeRouteUpdate } from 'vue-router';
 import { useMyStore } from '@/stores/MyStore.js';
+import { useRouter } from 'vue-router';
+
 const store = useMyStore();
+const router = useRouter()
 
 const init = async () => {
   console.log('init call');
@@ -13,6 +16,13 @@ onBeforeRouteUpdate((to, from, next) => {
     next();
     init();
 });
+
+const push = () => {
+  router.push('/test/b')
+}
 </script>
 
-<template></template>
+<template>
+  <h1>hello world</h1>
+  <button @click="push">to B</button>
+</template>
