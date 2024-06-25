@@ -3,7 +3,7 @@ import { test, expect, vi } from 'vitest';
 import { flushPromises, mount } from '@vue/test-utils';
 import { setActivePinia, createPinia } from 'pinia';
 import { createRouter, createMemoryHistory } from 'vue-router';
-import One from '@/components/One.Vue';
+import One from '@/components/One.vue';
 import { useMyStore } from '@/stores/MyStore.js';
 import {routes} from '@/router'
 
