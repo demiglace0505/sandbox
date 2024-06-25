@@ -4,7 +4,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 export const routes = [
   {
     path: '/test/:id',
-    name: 'test'
+    name: 'test',
+    component: () => import('@/components/One.vue')
   }
 ]
 

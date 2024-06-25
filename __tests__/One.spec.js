@@ -1,3 +1,4 @@
+import {nextTick} from 'vue'
 import { test, expect, vi } from 'vitest';
 import { flushPromises, mount } from '@vue/test-utils';
 import { setActivePinia, createPinia } from 'pinia';
@@ -21,7 +22,7 @@ test('setFlags is called when transferring from a to b', async () => {
   router.push('/test/a');
   await router.isReady();
 
-  mount(One, {
+  const wrapper = mount(One, {
     global: {
       plugins: [router],
     },
@@ -30,7 +31,7 @@ test('setFlags is called when transferring from a to b', async () => {
   // simulate a router update from a to b
   router.push('/test/b');
   await router.isReady();
-  await flushPromises();
+  await wrapper.vm.$nextTick()
 
-  expect(store.setFlags).toHaveBeenCalledOnce();
+  expect(store.setFlags).toHaveBeenCalledTimes(1);
 });
